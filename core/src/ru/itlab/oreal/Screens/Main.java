@@ -36,7 +36,7 @@ public class Main extends Game {
         isGameEnd = false;
         isDone = false;
 
-        setScreen(firstTownScreen);
+        setScreen(startMapScreen);
     }
 
     @Override
