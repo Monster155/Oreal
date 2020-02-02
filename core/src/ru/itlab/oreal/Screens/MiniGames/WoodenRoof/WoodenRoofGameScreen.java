@@ -115,7 +115,6 @@ public class WoodenRoofGameScreen implements Screen {
     }
 
     private class Foreground extends Actor {
-        int b = 0;
         private Vector2 lastPos;
         private boolean isFirstTime;
 
@@ -127,11 +126,6 @@ public class WoodenRoofGameScreen implements Screen {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     lastPos = new Vector2(x, y);
-                    b++;
-                    if (b > 5) {
-                        main.isGameEnd = true;
-                        main.isDone = true;
-                    }
                     isFirstTime = true;
                     return true;
                 }
