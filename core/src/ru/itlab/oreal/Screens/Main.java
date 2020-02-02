@@ -48,9 +48,9 @@ public class Main extends Game {
             if (oldScreen.equals(firstTownScreen)) {
                 firstTownScreen.dialogWindow.setDialogNumber(3);
             } else if (oldScreen.equals(secondTownScreen)) {
-                firstTownScreen.dialogWindow.setDialogNumber(4);
+                secondTownScreen.dialogWindow.setDialogNumber(4);
             } else if (oldScreen.equals(thirdTownScreen)) {
-                firstTownScreen.dialogWindow.setDialogNumber(4);
+                thirdTownScreen.dialogWindow.setDialogNumber(4);
             }
         }
 //        music = Gdx.audio.newMusic(Gdx.files.internal("gav.mp3"));

@@ -63,7 +63,7 @@ public class Kenney extends Actor {
                 ui.interactButton.toggle(true, n, this);
             }
         }
-        Gdx.app.log("Pos", body.getBody().getPosition().toString());
+//        Gdx.app.log("Pos", body.getBody().getPosition().toString());
     }
 
     public float getHeightSize() {

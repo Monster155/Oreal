@@ -1,6 +1,5 @@
 package ru.itlab.oreal.Screens.MiniGames.Cards;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -17,9 +16,9 @@ public class Card extends Actor {
 
 
     public Card(int num, int x, int y) {
-        this.card = new Texture(num + ".png");
+        this.card = new Texture("MiniGames/Cards/" + num + ".png");
         this.num = num;
-        this.reverced = new Texture("0.png");
+        this.reverced = new Texture("MiniGames/Cards/" + "0.png");
         this.isReversed = true;
         this.time = 4;
 
@@ -41,10 +40,9 @@ public class Card extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        if(!isReversed || time < 1){
+        if (!isReversed || time < 1) {
             batch.draw(card, getX(), getY(), getWidth(), getHeight());
-        }
-        else{
+        } else {
             batch.draw(reverced, getX(), getY(), getWidth(), getHeight());
         }
     }
@@ -54,11 +52,11 @@ public class Card extends Actor {
     }
 
 
-    public boolean getIsReversed(){
+    public boolean getIsReversed() {
         return isReversed;
     }
 
-    public void setIsReversed(boolean isReversed){
+    public void setIsReversed(boolean isReversed) {
         this.isReversed = isReversed;
         time = 0;
     }

@@ -2,6 +2,7 @@ package ru.itlab.oreal.Screens.MiniGames.Cards;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -46,6 +47,9 @@ public class CardsGameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         for (Card card : cards) {
             if (!card.getIsReversed()) {
                 if (currentNum == 0) {
@@ -68,7 +72,7 @@ public class CardsGameScreen implements Screen {
             }
         }
 
-        if(cards.size <= 0){
+        if (cards.size <= 0) {
             main.isGameEnd = true;
             main.isDone = true;
         }

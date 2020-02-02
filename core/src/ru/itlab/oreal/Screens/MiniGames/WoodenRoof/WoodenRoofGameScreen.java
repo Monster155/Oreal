@@ -14,10 +14,12 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import ru.itlab.oreal.Screens.Main;
+import ru.itlab.oreal.Utils.Hint;
 
 public class WoodenRoofGameScreen implements Screen {
     Stage stage;
     Array<Piece> pieces;
+    Hint hint;
     private Main main;
 
     public WoodenRoofGameScreen(Main main) {
@@ -28,6 +30,11 @@ public class WoodenRoofGameScreen implements Screen {
     public void show() {
         stage = new Stage(new StretchViewport(640, 360));
         stage.addActor(new Background());
+
+        hint = new Hint();
+        hint.setText("Нажмите на экран,\nчтобы пропустить уровень", 320, 180, true);
+        stage.addActor(hint);
+        hint.toBack();
 
         pieces = new Array<>();
 
@@ -115,6 +122,7 @@ public class WoodenRoofGameScreen implements Screen {
     }
 
     private class Foreground extends Actor {
+        int b = 0;
         private Vector2 lastPos;
         private boolean isFirstTime;
 
@@ -125,6 +133,14 @@ public class WoodenRoofGameScreen implements Screen {
             addListener(new InputListener() {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    b++;
+                    if (b == 5) {
+                        hint.setIsDraw(true);
+                        hint.toFront();
+                    } else if (b >= 6) {
+                        main.isGameEnd = true;
+                        main.isDone = true;
+                    }
                     lastPos = new Vector2(x, y);
                     isFirstTime = true;
                     return true;
@@ -133,48 +149,46 @@ public class WoodenRoofGameScreen implements Screen {
                 @Override
                 public void touchDragged(InputEvent event, float x, float y, int pointer) {
                     if (!isFirstTime) return;
-                    if (Math.abs(lastPos.x - x) > 10 || Math.abs(lastPos.y - y) > 10) { //движение в принципе, мб случайно
-                        if (Math.abs(Math.abs(lastPos.x - x) - Math.abs(lastPos.y - y)) > 10) { //движение по диагонали
-                            if (Math.abs(lastPos.x - x) > Math.abs(lastPos.y - y)) { //движ. по Х больше
-                                //move by X
-                                if (x - lastPos.x > 0) {
-                                    //swipe left
-                                    for (int i = 0; i < 9; i++) {
-                                        if (i % 3 > 0) {
-                                            if (pieces.get(i - 1).getNum() == 0) {
-                                                pieces.swap(i, i - 1);
-                                                break;
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    //swipe right
-                                    for (int i = 0; i < 9; i++) {
-                                        if (i % 3 < 2) {
-                                            if (pieces.get(i + 1).getNum() == 0) {
-                                                pieces.swap(i, i + 1);
-                                                break;
-                                            }
+                    if (Math.abs(Math.abs(lastPos.x - x) - Math.abs(lastPos.y - y)) > 10) { //движение по диагонали
+                        if (Math.abs(lastPos.x - x) > Math.abs(lastPos.y - y)) { //движ. по Х больше
+                            //move by X
+                            if (x - lastPos.x > 0) {
+                                //swipe left
+                                for (int i = 0; i < 9; i++) {
+                                    if (i % 3 > 0) {
+                                        if (pieces.get(i - 1).getNum() == 0) {
+                                            pieces.swap(i, i - 1);
+                                            break;
                                         }
                                     }
                                 }
                             } else {
-                                //move by Y
-                                if (y - lastPos.y > 0) {
-                                    //swipe up
-                                    for (int i = 5; i >= 0; i--) {
-                                        if (pieces.get(i + 3).getNum() == 0) {
-                                            pieces.swap(i, i + 3);
+                                //swipe right
+                                for (int i = 0; i < 9; i++) {
+                                    if (i % 3 < 2) {
+                                        if (pieces.get(i + 1).getNum() == 0) {
+                                            pieces.swap(i, i + 1);
                                             break;
                                         }
                                     }
-                                } else {
-                                    //swipe down
-                                    for (int i = 3; i < 9; i++) {
-                                        if (pieces.get(i - 3).getNum() == 0) {
-                                            pieces.swap(i, i - 3);
-                                            break;
-                                        }
+                                }
+                            }
+                        } else {
+                            //move by Y
+                            if (y - lastPos.y > 0) {
+                                //swipe up
+                                for (int i = 5; i >= 0; i--) {
+                                    if (pieces.get(i + 3).getNum() == 0) {
+                                        pieces.swap(i, i + 3);
+                                        break;
+                                    }
+                                }
+                            } else {
+                                //swipe down
+                                for (int i = 3; i < 9; i++) {
+                                    if (pieces.get(i - 3).getNum() == 0) {
+                                        pieces.swap(i, i - 3);
+                                        break;
                                     }
                                 }
                             }
