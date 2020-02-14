@@ -36,7 +36,7 @@ public class Main extends Game {
         isGameEnd = false;
         isDone = false;
 
-        setScreen(startMapScreen);
+        setScreen(startMapScreen);//TODO don't forget to change this
     }
 
     @Override
@@ -44,6 +44,7 @@ public class Main extends Game {
         super.render();
         if (isDone) {
             isDone = false;
+            getScreen().dispose();
             setScreen(oldScreen);
             if (oldScreen.equals(firstTownScreen)) {
                 firstTownScreen.dialogWindow.setDialogNumber(3);

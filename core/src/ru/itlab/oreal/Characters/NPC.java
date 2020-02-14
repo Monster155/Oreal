@@ -17,7 +17,7 @@ public abstract class NPC extends Actor {
     public NPC() {
         canSay = false;
         isMove = false;
-        speed = 30;
+        speed = 60;
         setSize(30, 40);
     }
 

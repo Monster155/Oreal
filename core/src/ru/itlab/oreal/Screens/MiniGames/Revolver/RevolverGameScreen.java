@@ -7,15 +7,15 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import ru.itlab.oreal.Screens.Main;
 
 public class RevolverGameScreen implements Screen {
-    public boolean isBusy;
+
     Stage stage;
-    Array<ButtonAndSpring> actions;
-    private Main main;
+    boolean isLampActivated;
+    Array<ButtonAndSpring> bas;
+    Main main;
 
     public RevolverGameScreen(Main main) {
         this.main = main;
@@ -23,24 +23,18 @@ public class RevolverGameScreen implements Screen {
 
     @Override
     public void show() {
-        isBusy = false;
+        stage = new Stage();
+        isLampActivated = false;
+        bas = new Array<>();
 
-        stage = new Stage(new StretchViewport(640, 360));
-        stage.addActor(new Background());
+        stage.addActor(new BackgroundAndLamp());
 
-        actions = new Array<>();
         for (int i = 0; i < 3; i++) {
-            actions.add(new ButtonAndSpring(i, this));
-            stage.addActor(actions.get(i));
+            bas.add(new ButtonAndSpring(i, this));
+            stage.addActor(bas.get(i));
         }
 
         Gdx.input.setInputProcessor(stage);
-    }
-
-    public void dropResults() {
-        for (ButtonAndSpring bas : actions) {
-            bas.dropResult();
-        }
     }
 
     @Override
@@ -54,9 +48,15 @@ public class RevolverGameScreen implements Screen {
         }
     }
 
+    public void dropResults() {
+        for (ButtonAndSpring b : bas) {
+            b.dropValues();
+        }
+    }
+
     private boolean check() {
-        for (ButtonAndSpring bas : actions) {
-            if (!bas.getIsPassed())
+        for (ButtonAndSpring b : bas) {
+            if (!b.getIsPassed())
                 return false;
         }
         return true;
@@ -84,28 +84,33 @@ public class RevolverGameScreen implements Screen {
 
     @Override
     public void dispose() {
-        stage.dispose();
+
     }
 
-    private class Background extends Actor {
-        private Texture texture, textureLampActivated, textureLampDeactivated;
+    private class BackgroundAndLamp extends Actor {
+        private Texture lampActivatedTexture, lampDeactivatedTexture, backgroundTexture;
 
-        public Background() {
+        public BackgroundAndLamp() {
             super();
             setBounds(0, 0, 640, 360);
-            texture = new Texture("MiniGames/Revolver/background.png");
-            textureLampActivated = new Texture("MiniGames/Revolver/lampA.png");
-            textureLampDeactivated = new Texture("MiniGames/Revolver/lampD.png");
+            backgroundTexture = new Texture("MiniGames/Revolver/background.png");
+            lampActivatedTexture = new Texture("MiniGames/Revolver/lampA.png");
+            lampDeactivatedTexture = new Texture("MiniGames/Revolver/lampD.png");
         }
 
         @Override
         public void draw(Batch batch, float parentAlpha) {
             super.draw(batch, parentAlpha);
-            batch.draw(texture, getX(), getY(), getWidth(), getHeight());
-            if (isBusy)
-                batch.draw(textureLampActivated, 580, 20, 40, 40);
+            batch.draw(backgroundTexture, getX(), getY(), getWidth(), getHeight());
+            if (isLampActivated)
+                batch.draw(lampActivatedTexture, 580, 20, 40, 40);
             else
-                batch.draw(textureLampDeactivated, 580, 20, 40, 40);
+                batch.draw(lampDeactivatedTexture, 580, 20, 40, 40);
+        }
+
+        @Override
+        public void act(float delta) {
+            super.act(delta);
         }
     }
 }
