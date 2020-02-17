@@ -58,6 +58,7 @@ public class DialogsList {
                         holder.add(new DialogHolder("Да слухи разные ходят, но дела мне до них никакого. " +
                                 "Здорово помог ты мне! Даже не знаю, как благодарить", false));
                         holder.add(new DialogHolder("Услуга за услугу", true));
+                        holder.add(new DialogHolder("Спасибо ещё раз! Если буду нужен, ищи меня в мастерской", false));
                         break;
                     case 4:
                         holder.add(new DialogHolder("Это ты тот страдалец! Мне о тебе уже доложили." +

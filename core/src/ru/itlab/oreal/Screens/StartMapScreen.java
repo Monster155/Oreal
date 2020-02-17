@@ -119,7 +119,7 @@ public class StartMapScreen implements Screen {
                     step++;
                 break;
             case 4:
-                ui.setCanContinue(false);
+                ui.setCanContinue(false); // i can't speak before smbd went
                 if (npcs.get(0).moveTo(1030, 570)) {
                     step++;
                     ui.setCanContinue(true);

@@ -3,6 +3,7 @@ package ru.itlab.oreal.Screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.math.Vector2;
 
 import ru.itlab.oreal.Screens.MiniGames.Cards.CardsGameScreen;
 import ru.itlab.oreal.Screens.MiniGames.Revolver.RevolverGameScreen;
@@ -22,6 +23,7 @@ public class Main extends Game {
     Music music;
 
     Screen oldScreen;
+    Vector2 kenneyPosition;
 
     @Override
     public void create() {
@@ -47,7 +49,9 @@ public class Main extends Game {
             getScreen().dispose();
             setScreen(oldScreen);
             if (oldScreen.equals(firstTownScreen)) {
+                firstTownScreen.step = 6;
                 firstTownScreen.dialogWindow.setDialogNumber(3);
+                firstTownScreen.kenney.body.getBody().setTransform(kenneyPosition, 0);
             } else if (oldScreen.equals(secondTownScreen)) {
                 secondTownScreen.dialogWindow.setDialogNumber(4);
             } else if (oldScreen.equals(thirdTownScreen)) {
