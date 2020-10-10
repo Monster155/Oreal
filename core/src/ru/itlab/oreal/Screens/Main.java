@@ -38,7 +38,7 @@ public class Main extends Game {
         isGameEnd = false;
         isDone = false;
 
-        setScreen(startMapScreen);//TODO don't forget to change this
+        setScreen(firstTownScreen);//TODO don't forget to change this
     }
 
     @Override

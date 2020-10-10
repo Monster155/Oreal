@@ -9,6 +9,10 @@ public class Bob extends NPC {
         setName("Bob");
         numberOfDialogWithMe = new int[][]{{0}, {1, 2, 3, 6, 7}};
         emotions = new Texture("Emotions/exclamation.png");
-        texture = new Texture("Characters/Bob.png");
+    }
+
+    @Override
+    protected Texture[] getAnimationTextures() {
+        return new Texture[]{new Texture("Characters/Bob.png")};
     }
 }

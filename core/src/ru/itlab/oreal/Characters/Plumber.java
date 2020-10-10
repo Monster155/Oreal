@@ -8,6 +8,10 @@ public class Plumber extends NPC {
         setName("Plumber");
         numberOfDialogWithMe = new int[][]{{0}, {0}, {0}, {1}};
         emotions = new Texture("Emotions/exclamation.png");
-        texture = new Texture("Characters/kek.png");
+    }
+
+    @Override
+    protected Texture[] getAnimationTextures() {
+        return new Texture[]{new Texture("Characters/kek.png")};
     }
 }

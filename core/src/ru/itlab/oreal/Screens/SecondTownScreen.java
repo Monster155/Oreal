@@ -60,13 +60,13 @@ public class SecondTownScreen implements Screen {
         ui = new UI(dialogWindow);
         npcs = new Array<>();
         npcs.add(new Cab(), new Man(), new NotSteve(), new TrainWoman());
-        npcs.get(0).setPosition(642, 518);
-        npcs.get(1).setPosition(641, 380);
-        npcs.get(2).setPosition(837, 400);
-        npcs.get(3).setPosition(1196, 107);
+        npcs.get(0).setPosition(642+220, 518+220);
+        npcs.get(1).setPosition(641+220, 380+220);
+        npcs.get(2).setPosition(837+220, 400+220);
+        npcs.get(3).setPosition(1196+220, 107+220);
 
         kenney = new Kenney(ui, world, npcs, 2);
-        kenney.body.getBody().setTransform(579, 512, 0);
+        kenney.body.getBody().setTransform(579+220, 512+220, 0);
 
         for (NPC b : npcs) {
             stage.addActor(b);

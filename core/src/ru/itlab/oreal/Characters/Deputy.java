@@ -8,6 +8,10 @@ public class Deputy extends NPC {
         setName("Deputy");
         numberOfDialogWithMe = new int[][]{{1, 2}};
         emotions = new Texture("Emotions/exclamation.png");
-        texture = new Texture("Characters/deputy.png");
+    }
+
+    @Override
+    protected Texture[] getAnimationTextures() {
+        return new Texture[]{new Texture("Characters/deputy.png")};
     }
 }

@@ -8,6 +8,10 @@ public class Housekeeper extends NPC {
         setName("Housekeeper");
         numberOfDialogWithMe = new int[][]{{3}};
         emotions = new Texture("Emotions/exclamation.png");
-        texture = new Texture("Characters/woman1.png");
+    }
+
+    @Override
+    protected Texture[] getAnimationTextures() {
+        return new Texture[]{new Texture("Characters/woman1.png")};
     }
 }

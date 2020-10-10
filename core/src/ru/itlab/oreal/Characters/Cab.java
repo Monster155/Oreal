@@ -8,6 +8,10 @@ public class Cab extends NPC {
         setName("Cab");
         numberOfDialogWithMe = new int[][]{{0}, {5, 8}, {1}};
         emotions = new Texture("Emotions/exclamation.png");
-        texture = new Texture("Characters/muzik.png");
+    }
+
+    @Override
+    protected Texture[] getAnimationTextures() {
+        return new Texture[]{new Texture("Characters/muzik.png")};
     }
 }

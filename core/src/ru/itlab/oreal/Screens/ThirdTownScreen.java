@@ -58,11 +58,11 @@ public class ThirdTownScreen implements Screen {
         ui = new UI(dialogWindow);
         npcs = new Array<>();
         npcs.add(new Plumber(), new Steve());
-        npcs.get(0).setPosition(1104, 310);
-        npcs.get(1).setPosition(135, 535);
+        npcs.get(0).setPosition(1104+220, 310+220);
+        npcs.get(1).setPosition(135+220, 535+220);
 
         kenney = new Kenney(ui, world, npcs, 3);
-        kenney.body.getBody().setTransform(1154, 156, 0);
+        kenney.body.getBody().setTransform(1154+220, 156+220, 0);
 
         for (NPC b : npcs) {
             stage.addActor(b);
@@ -104,7 +104,7 @@ public class ThirdTownScreen implements Screen {
 //            b2ddr.render(world, stage.getCamera().combined);
         }
         if (dialogWindow.getDialogNumber() == 3) {
-            npcs.get(1).setPosition(542, 677);
+            npcs.get(1).setPosition(542+220, 677+220);
         }
         if (dialogWindow.getDialogNumber() == 4 && !main.isGameEnd) {
             main.setScreen(main.revolverGameScreen);

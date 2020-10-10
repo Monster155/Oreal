@@ -27,6 +27,8 @@ import ru.itlab.oreal.Utils.TiledObjectUtil;
 
 public class FirstTownScreen implements Screen {
 
+    private final int DENSITY = 3;
+
     boolean isBlockRender;
 
     Stage stage, dialogStage;
@@ -65,12 +67,14 @@ public class FirstTownScreen implements Screen {
         ui = new UI(dialogWindow);
         npcs = new Array<>();
         npcs.add(new TownMayor(false), new Bob(), new Cab());
-        npcs.get(0).setPosition(921, 535);
-        npcs.get(1).setPosition(470, 310);
-        npcs.get(2).setPosition(150, 155);
+        npcs.get(0).setPosition(921+220, 535+220);
+//        npcs.get(1).setPosition(470, 310); +220
+        npcs.get(1).setPosition(690, 530);
+//        npcs.get(2).setPosition(150, 155);
+        npcs.get(2).setPosition(370, 375);
 
         kenney = new Kenney(ui, world, npcs, 1);
-        kenney.body.getBody().setTransform(395, 310, 0);
+        kenney.body.getBody().setTransform(395+220, 310+220, 0);
 
         for (NPC b : npcs) {
             stage.addActor(b);
@@ -85,8 +89,8 @@ public class FirstTownScreen implements Screen {
 
         mapBody = new Array<>();
         map = new TmxMapLoader().load("FirstTown/Maps1.tmx");
-        tmr = new OrthogonalTiledMapRenderer(map, 3);
-        mapBody = TiledObjectUtil.buildBuildingsBodies(map, world, 3);
+        tmr = new OrthogonalTiledMapRenderer(map, DENSITY, stage.getBatch());
+        mapBody = TiledObjectUtil.buildBuildingsBodies(map, world, DENSITY);
 
         Gdx.input.setInputProcessor(stage);
     }
@@ -148,7 +152,7 @@ public class FirstTownScreen implements Screen {
                 break;
             case 8:
                 //Bob go
-                if (npcs.get(1).moveTo(678, 265)) {
+                if (npcs.get(1).moveTo(678+220, 265+220)) {
                     step++;
                 }
                 break;

@@ -8,6 +8,10 @@ public class Man extends NPC {
         setName("Man");
         numberOfDialogWithMe = new int[][]{{0}, {0}, {2}};
         emotions = new Texture("Emotions/exclamation.png");
-        texture = new Texture("Characters/kek.png");
+    }
+
+    @Override
+    protected Texture[] getAnimationTextures() {
+        return new Texture[]{new Texture("Characters/kek.png")};
     }
 }
